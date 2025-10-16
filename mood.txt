@@ -1,0 +1,17 @@
+Hi, this is a one‑minute tour of the Campus Life Planner codebase.
+
+The UI is built with semantic HTML pages: `index.html` for the dashboard, `tasks.html` for creating, searching, and managing tasks, plus `settings.html`, `about.html`, and `tests.html`. Styles live in `styles/main.css`, which defines a responsive layout, strong focus states for accessibility, and a theme system. In dark mode the header is pure black, and the navbar adapts its colors. We removed intro and bounce animations so pages render instantly.
+
+
+State and logic are organized in `scripts/`. `state.js` holds app data and derived stats. `storage.js` persists everything to `localStorage` and handles import/export. `validators.js` centralizes the regex rules used by forms and search. `search.js` performs live filtering and wraps matches in `<mark>`. `chart.js` aggregates durations and renders the weekly trend. `ui.js` wires up the sun/moon theme toggle, applies `[data-theme]`, and keeps labels accessible.
+
+Together, these modules create a fast, accessible planner with no build step—just open with a static server. Edit tasks on `tasks.html`, watch stats update on `index.html`, and switch themes anytime with the navbar toggle.
+
+Quick regex overview used in the app:
+- Title `^\S(?:.*\S)?$` — requires the first and last character to be non‑space, preventing leading/trailing spaces while allowing spaces inside.
+- Due Date `^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$` — matches a strict `YYYY-MM-DD`, validating months 01–12 and day ranges.
+- Duration `^(0|[1-9]\\d*)(\\.\\d{1,2})?$` — non‑negative integer or decimal with up to two fractional digits.
+- Tag `^[A-Za-z]+(?:[ -][A-Za-z]+)*$` — words made of letters, optionally separated by single spaces or hyphens; no digits or extra separators.
+- Duplicate word `\\b(\\w+)\\s+\\1\\b` (case‑insensitive) — flags adjacent repeated words in titles like “read read”.
+
+For search highlighting, we compile a user‑supplied pattern into a `RegExp` with `g` or `gi` flags; invalid patterns are safely caught and ignored, and text is HTML‑escaped before wrapping matches in `<mark>`.
