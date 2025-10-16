@@ -37,8 +37,8 @@ Vanilla HTML, CSS, and JavaScript app to manage tasks/events, durations, and tag
 Open `tests.html` in a browser to run basic regex checks. Import/export tests coming with schema validation task.
 
 ## Demo
-- Video (2–3 min): add your unlisted link here
-- GitHub Pages: add your live link here
+- Video (2–3 min): https://youtu.be/d-g2WapNRxI
+- GitHub Pages: https://github.com/mog-ttw/Campus-Life-PLanner-
 
 ## Development
 Open `index.html` with a local server or directly in a browser. No build required.
